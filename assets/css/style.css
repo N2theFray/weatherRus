@@ -70,7 +70,35 @@
   /* uvIndex */
 
   .uv_index_high {
+    background-color: rgb(231, 132, 2);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .uv_index_low {
+    background-color: rgb(100, 153, 57);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .uv_index_moderate {
+    background-color: rgb(228, 195, 89);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .uv_index_very_high {
     background-color: red;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .uv_index_extreme {
+    background-color: rgb(113, 21, 136);
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
@@ -82,7 +110,7 @@
     border-radius: 10px;
   }
 
-  .content_box {
+  #content-box {
     border-left: black 2px solid;
     border-bottom: black 2px solid;
     padding-left: 5px;
@@ -103,7 +131,7 @@
     padding: 10px;
   }
 
-  .main_box {
+  #main-box {
     margin: 10px;
   }
 
