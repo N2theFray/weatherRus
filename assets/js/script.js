@@ -8,13 +8,13 @@ var cityNameHolder = []
 //init cityNameArray
 var cityNameArray = JSON.parse(localStorage.getItem("cityNameArray"));
     // //init homepage if none exist in local storage
-        if(!cityNameArray){
-            cityNameArray = []
-            getCityInfo("Chicago");
-        } else {
-            getCityInfo(cityNameArray[cityNameArray.length-1])
-            searchHistoryBtns();
-        }
+    if(!cityNameArray){
+        cityNameArray = []
+        getCityInfo("Chicago");
+    } else {
+        getCityInfo(cityNameArray[cityNameArray.length-1])
+        searchHistoryBtns();
+    }
 
 //time converter
 function timeConverter (inputTime) {
@@ -31,11 +31,11 @@ return formattedTime
 
 //parse lat lon from city input
 function getCityInfo (city) {
-// format openweather api
-var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=27a6e74d4260774945191a8dc4b750e0&units=imperial"
+    // format openweather api
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=27a6e74d4260774945191a8dc4b750e0&units=imperial"
 
-//make request to url
-fetch(apiUrl)
+    //make request to url
+    fetch(apiUrl)
     .then(function(response){
         if(response.ok){
             return response.json()
@@ -43,17 +43,19 @@ fetch(apiUrl)
             alert("Error: Please Enter Valid City")
             getCityInfo(cityNameArray[cityNameArray.length-1])
         }
-})
-.then(function(data){
-    var cityLat = data.coord.lat;
-    var cityLon = data.coord.lon;
-    var requestName = data.name;
-    cityUvInfo (cityLat, cityLon, requestName);
+    })
+    .then(function(data){
+        var cityLat = data.coord.lat;
+        var cityLon = data.coord.lon;
+        var requestName = data.name;
+        
+        //send info
+        cityUvInfo (cityLat, cityLon, requestName);
 
-    //to get the same name regardless of user input
-    localStorageHolder(requestName);
-    cityNameHolder = requestName;
-});
+        //to get the same name regardless of user input
+        localStorageHolder(requestName);
+        cityNameHolder = requestName;
+    });
 };
 
 //main content builder
@@ -82,14 +84,12 @@ function cityUvInfo (lat, lon, requestName) {
         var titleCityEl = document.createElement("h2")
         titleCityEl.className = "titleCity";
         titleCityEl.innerHTML = cityName + " (" + today.Date + ")";
-            //change img icon
 
         var imageIconEl = document.createElement("img")
         imageIconEl.className = "imgIcon";
         imageIconEl.setAttribute("src", today.Icon);
-        
 
-        //append contents of h2 to container
+        
         titleCityEl.appendChild(imageIconEl)
         contentBoxEl.appendChild(titleCityEl)
 
@@ -115,7 +115,6 @@ function cityUvInfo (lat, lon, requestName) {
 
         cityHumidityEl.appendChild(humiditySymbolEl)
         contentBoxEl.appendChild(cityHumidityEl)
-
             
 
         //create wind speed h3
