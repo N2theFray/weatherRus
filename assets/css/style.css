@@ -135,7 +135,7 @@
     margin: 10px;
   }
 
-  #username {
+  #cityInput {
       width: 70%;
   }
 
@@ -145,7 +145,7 @@
     margin-top: 5px;
   }
   
-  .search_history {
+  #search-history {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -158,4 +158,9 @@
 
   .imgIcon {
     max-height: 35px;
+  }
+
+  .names {
+    margin-top: 6px;
+    height: 37px;
   }
