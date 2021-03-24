@@ -1,6 +1,6 @@
 var contentBoxEl = document.querySelector("#content-box")
 var forecastBoxEl = document.querySelector("#forecast_box")
-// var mainBoxEl = document.querySelector("#main-box")
+
 
 //time converter
 function timeConverter (inputTime) {
@@ -41,7 +41,8 @@ function cityUvInfo (lat, lon, requestName) {
         return response.json()
     })
     .then(function(data){
-        
+        console.log(data);
+
         //today object
         var today = {
             Date: timeConverter(data.current.dt),
@@ -134,15 +135,46 @@ function cityUvInfo (lat, lon, requestName) {
 
             var forecast = {
                 Date: timeConverter(data.daily[i].dt),
-                Min: data.daily[i].temp.min,
-                Max: data.daily[i].temp.max,
+                Temp: data.daily[i].temp.day,
                 Humidity: data.daily[i].humidity, 
-                Icon: data.daily[i].weather[0].icon
+                Icon: "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png"
             }
 
             
+            //create forecast cards
+            var forecastCard = document.createElement("div")
+            forecastCard.className = "forecast_card"
+
+                //create content of forecast card
+                //create date holder
+                var forecastDate = document.createElement("p")
+                forecastDate.textContent = forecast.Date
+
+                //icon holder
+                var forecastImg = document.createElement("img")
+                forecastImg.className = "imgIcon"
+                forecastImg.setAttribute("src", forecast.Icon)
+
+                //temp holder
+                var forecastMinMax = document.createElement("p")
+                forecastMinMax.innerHTML = "Temp: " + forecast.Temp + " &#8457;"
+                
+                //humidity holder
+                var forecastHumidity = document.createElement("p")
+                forecastHumidity.innerHTML = "Humidity: " + forecast.Humidity + "&#x25;"
+
+                //build card
+                forecastCard.appendChild(forecastDate)
+                forecastCard.appendChild(forecastImg)
+                forecastCard.appendChild(forecastMinMax)
+                forecastCard.appendChild(forecastHumidity)
+
+                //attach cards to container
+                forecastBoxEl.appendChild(forecastCard)
         }
     });
 }
+
+
 
 getCityInfo("Savannah");
